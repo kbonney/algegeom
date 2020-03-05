@@ -1,5 +1,3 @@
---exponents f is handy
-
 --univariate divison algorithm
 divAlg = (f,g) -> (
     q := 0;
@@ -10,7 +8,7 @@ divAlg = (f,g) -> (
                 q = q+leadCoefficient(r)/leadCoefficient(g)*x^(b-a);
                 r = r-leadCoefficient(r)/leadCoefficient(g)*x^(b-a)*g;
                 );
-    {q,r})
+{q,r})
 
 --checks if one monomial x divides a monomial y
 --takes a tuple of exponents for x and y
@@ -61,6 +59,7 @@ mDivAlg = (g,F) -> (
     );
 {J,r})
 
+--calculates the lcm for two monomials f and g
 monomialLCM = (f,g) -> (
     R := ring f;
     A := exponents f;
@@ -71,8 +70,9 @@ monomialLCM = (f,g) -> (
     for i from 0 to #S -1 do(
         l = l * S#i ^ (X#i);
     );
-l)---how to create polynomial from this list
+l)
 
+--calculates s-polynomial for f and g
 sPoly = (f,g) -> (
     R := ring f;
     l1 = leadTerm f;
@@ -80,8 +80,8 @@ sPoly = (f,g) -> (
     l = monomialLCM(l1,l2);
     s = sub((l / leadTerm f)*f - (l / leadTerm g)*g,R);
 s)
----gotta fix lead term division using exponents
 
+--applies buchberger's algorithm to a generating set F
 buchberger = F -> (
     --initialization of vars
     G := F;
@@ -98,7 +98,7 @@ buchberger = F -> (
             P = append(P,{G#i,G#j})
         );
     );
-    --buchberger time
+    --buchberger algorithm
     while G != G' do(
         G' = G;
         lenP = #P-1;
@@ -118,15 +118,3 @@ buchberger = F -> (
         );
     );
 G)
---need to handle set vs list problems with P
---i think this works? just gotta finish sPoly
-
-
---useful commands 4 buchberger
--- toList for making something a list
--- append(F,x) prepend(x,F)
---!!!!
---grab variables from polynomial ring for going from exponents list to actual polynomial
---with vars R
---first entries vars R gives list
---!!!!
