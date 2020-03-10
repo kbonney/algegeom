@@ -1,0 +1,109 @@
+\documentclass{article}
+\usepackage{myStyle}
+\usepackage{titlesec}
+
+
+%packages----------------------------------
+
+%packages----------------------------------
+
+%settings----------------------------------
+
+\parindent0pt
+\titleformat{\section}
+{\normalfont\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+{\normalfont\bfseries}{\thesubsection}{1em}{}
+
+%settings----------------------------------
+
+%commands----------------------------------
+
+%commands----------------------------------
+
+%title-------------------------------------
+
+\title{Computer Exercises 1}
+\author{Kirk Bonney}
+\date{}
+
+%title-------------------------------------
+%
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+
+Implement the division algorithm for multivariate polynomials in Macaulay 2.
+
+\subsection*{Proof}
+
+See code (mDivAlg)
+
+\section*{Problem 2}
+In each of (1) and (2), use the Macaulay2 function you wrote for Problem 1 to compute the remainder on division of the polynomial $f$ by the ordered set $F$.
+\begin{enumerate}[label = (\arabic*)]
+\item $f = x^2y + xy^2 +y^2, f_1 = y^2 - 1, f_2 = xy -1 \in \QQ[x,y]$ and $F = {f_1, f_2}$. Use lex with $x>y$.
+\item $f = y^2x +4yx =3x^2, g = 2y + x + 1 \in \QQ[x,y]$ and $F + {g}$. Use grlex with $y > x$.
+\end{enumerate}
+
+\subsection*{(1) Proof}
+
+mDivAlg($f$,$F$) $\rightarrow$ $\{ \{ 1, x + 1 \}, x+2 \}$ so,
+
+$$
+f = f_1 + (x+1)f_2 + (x + 2)
+$$
+
+\subsection*{(2) Proof}
+
+mDivAlg($f$,$F$) $\rightarrow$ $ \{ \{ \frac{1}{2} yx - \frac{1}{4} x^2 + \frac{7}{4} x \}, \frac{1}{4} x^3 - \frac{9}{2} x^2 - \frac{7}{4} x \}$ so,
+
+$$
+f = (\frac{1}{2} yx - \frac{1}{4} x^2 + \frac{7}{4} x) g + (\frac{1}{4} x^3 - \frac{9}{2} x^2 - \frac{7}{4} x)
+$$
+
+\section*{Problem 3}
+
+Write a Macaulay2 function that computes the least common multiple of two monomials.
+
+\subsection*{Proof}
+
+See code (monomialLCM)
+
+\section*{Problem 4}
+
+Write a Macaulay2 funciton that computes the $S$-polynomial of two non-zero polynomials.
+
+\subsection*{Proof}
+
+See code (sPoly)
+
+\section*{Problem 5}
+
+Implement Buchberger's algorithm in Macaulay2.
+
+\subsection*{Proof}
+
+See code (buchberger)
+
+\section*{Problem 6}
+
+Use the Macaulay2 function you wrote for Problem 5 to compute a Groebner basis for each of the following ideals.
+
+\begin{enumerate}[label = (\arabic*)]
+\item $I = \langle x^3 - 2xy, x^2y - 2y^2 + x \rangle \subset \QQ[x,y]$. Use grlex with $x >y$.
+\item $I = \langle x + y + z, y^2 + yz + z^2, Z^3 - 1 \rangle \subseteq \QQ[x,y]$. Use lex with $x > y$.
+\end{enumerate}
+
+\subsection*{(1) Proof}
+
+buchberger $F$ $\rightarrow$ $\{x^3 - 2xy, x^2y - 2y^2 + x, -x^2,-2xy,-2y^2 +x \}$
+
+\subsection*{(2) Proof}
+
+buchberger $F$ $\rightarrow$ $\{x + y + z, y  + yz + z , z  - 1\}$
+
+
+\end{document}
